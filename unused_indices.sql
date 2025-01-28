@@ -13,4 +13,4 @@ WHERE 0 <>ALL (i.indkey)  -- no index column is an expression
          (SELECT 1 FROM pg_catalog.pg_constraint c 
           WHERE c.conindid = s.indexrelid) 
 --   AND iis.tablespace IS NULL 
-ORDER BY index_scan_count ASC; 
+ORDER BY pg_relation_size(s.indexrelid) DESC; 
